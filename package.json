@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "test": "npm run tsc -- --noEmit && jest",
+    "test": "npm run tsc -- --noEmit && jest --runInBand --no-cache --verbose",
     "tsc": "tsc"
   },
   "devDependencies": {
