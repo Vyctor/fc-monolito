@@ -12,8 +12,6 @@ export class CheckInventoryUsecase {
   ): Promise<CheckInventoryOutputDto> {
     const product = await this.productRepository.find(input.productId);
 
-    console.log("product", product);
-
     return {
       productId: product.id.id,
       inventory: product.inventory,
