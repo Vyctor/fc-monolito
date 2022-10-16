@@ -10,7 +10,7 @@ export class FindAllProductsUsecase implements UsecaseInterface {
 
     return {
       products: products.map((product: Product) => ({
-        id: product.id,
+        id: product.id.id,
         name: product.name,
         description: product.description,
         salePrice: product.salePrice,

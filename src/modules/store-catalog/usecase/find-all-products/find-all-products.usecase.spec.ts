@@ -32,7 +32,7 @@ describe("Find all products usecase unit test", () => {
 
     expect(productRepository.findAll).toHaveBeenCalled();
     expect(result.products.length).toBe(2);
-    expect(result.products[0].id).toBe(product.id);
+    expect(result.products[0].id).toBe(product.id.id);
     expect(result.products[0].name).toBe(product.name);
     expect(result.products[0].description).toBe(product.description);
     expect(result.products[0].salePrice).toBe(product.salePrice);
