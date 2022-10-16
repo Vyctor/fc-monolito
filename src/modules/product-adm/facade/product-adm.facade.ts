@@ -7,7 +7,7 @@ import {
 } from "./product-adm.facade.interface";
 
 export interface UsecasesProps {
-  addUsecase: UsecaseInterface;
+  addProductUsecase: UsecaseInterface;
   checkInventoryUsecase: UsecaseInterface;
 }
 
@@ -16,7 +16,7 @@ export class ProductAdmFacade implements ProductAdmFacadeInterface {
   private _checkInventoryUsecase: any;
 
   constructor(usecasesProps: UsecasesProps) {
-    this._addProductUsecase = usecasesProps.addUsecase;
+    this._addProductUsecase = usecasesProps.addProductUsecase;
     this._checkInventoryUsecase = usecasesProps.checkInventoryUsecase;
   }
 
