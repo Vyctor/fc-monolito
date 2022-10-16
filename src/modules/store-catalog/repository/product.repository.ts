@@ -20,6 +20,13 @@ export class ProductRepository implements ProductGateway {
   }
 
   async find(id: string): Promise<Product> {
-    throw new Error("Method not implemented.");
+    const product = await ProductModel.findByPk(id);
+
+    return new Product({
+      id: new Id(product.id),
+      name: product.name,
+      description: product.description,
+      salePrice: product.salePrice,
+    });
   }
 }
