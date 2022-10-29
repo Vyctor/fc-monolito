@@ -21,6 +21,29 @@ export class Transaction extends BaseEntity implements AggregateRoot {
     this._amount = props.amount;
     this._orderId = props.orderId;
     this._status = props.status || "pending";
+    this.validate();
+  }
+
+  private validate(): void {
+    if (this._amount <= 0) {
+      throw new Error("Amount must be greater than 0");
+    }
+  }
+
+  approve(): void {
+    this._status = "approved";
+  }
+
+  decline(): void {
+    this._status = "declined";
+  }
+
+  process(): void {
+    if (this._amount >= 100) {
+      this.approve();
+    } else {
+      this.decline();
+    }
   }
 
   get amount() {
@@ -33,9 +56,5 @@ export class Transaction extends BaseEntity implements AggregateRoot {
 
   get status() {
     return this._status;
-  }
-
-  set status(status: string) {
-    this._status = status;
   }
 }
