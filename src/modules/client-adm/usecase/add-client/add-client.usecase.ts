@@ -18,12 +18,7 @@ export class AddClientUsecase {
 
     const client = new Client(props);
 
-    await this._clientRepository.add({
-      id: client.id.id,
-      name: client.name,
-      email: client.email,
-      address: client.address,
-    });
+    await this._clientRepository.add(client);
 
     return {
       id: client.id.id,

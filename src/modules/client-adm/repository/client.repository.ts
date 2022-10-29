@@ -5,7 +5,16 @@ import { AddClientInputDto } from "../usecase/add-client/add-client.usecase.dto"
 import { ClientModel } from "./client.model";
 
 export default class ClientRepository implements ClientGateway {
-  async add(input: AddClientInputDto): Promise<void> {}
+  async add(input: Client): Promise<void> {
+    await ClientModel.create({
+      id: input.id.id,
+      name: input.name,
+      email: input.email,
+      address: input.address,
+      createdAt: input.createdAt,
+      updatedAt: input.updatedAt,
+    });
+  }
 
   async find(id: string): Promise<Client> {
     const client = await ClientModel.findOne({ where: { id } });
