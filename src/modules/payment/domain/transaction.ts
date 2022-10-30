@@ -39,7 +39,7 @@ export class Transaction extends BaseEntity implements AggregateRoot {
   }
 
   process(): void {
-    if (this._amount >= 100) {
+    if (this.amount >= 100) {
       this.approve();
     } else {
       this.decline();
