@@ -1,6 +1,7 @@
 import { UsecaseInterface } from "../../../@shared/usecase/usecase.interface";
 import { InvoiceGateway } from "../../gateway/invoice.gateway";
 import { FindInvoiceInputDto, FindInvoiceOutputDto } from "./find-invoice.dto";
+
 export class FindInvoiceUsecase implements UsecaseInterface {
   constructor(private readonly _invoiceRepository: InvoiceGateway) {}
 
