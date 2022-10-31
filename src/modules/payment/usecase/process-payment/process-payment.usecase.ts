@@ -20,8 +20,6 @@ export class ProcessPaymentUsecase implements UsecaseInterface {
       transaction
     );
 
-    console.log("transaction", persistTransaction.status);
-
     return {
       transactionId: persistTransaction.id.id,
       orderId: persistTransaction.orderId,
