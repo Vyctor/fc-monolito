@@ -1,3 +1,4 @@
+import { Address } from "../../../@shared/domain/value-object/address.value-object";
 import { Id } from "../../../@shared/domain/value-object/id.value-object";
 import { Invoice } from "../../domain/invoice";
 import { FindInvoiceUsecase } from "./find-invoice.usecase";
@@ -6,7 +7,14 @@ const invoice = new Invoice({
   id: new Id("1"),
   name: "John Doe",
   document: "123456789",
-  address: "Street 123",
+  address: new Address({
+    street: "Street",
+    number: "123",
+    complement: "Complement",
+    city: "City",
+    state: "State",
+    zipCode: "12345678",
+  }),
   items: [
     {
       id: new Id("1"),

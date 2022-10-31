@@ -1,3 +1,4 @@
+import { Address } from "../../../@shared/domain/value-object/address.value-object";
 import { GenerateInvoiceUsecase } from "./generate-invoice.usecase";
 
 const mockRepository = () => {
@@ -16,7 +17,14 @@ describe("Generate Invoice Usecase", () => {
     const input = {
       name: "John Doe",
       document: "123456789",
-      address: "Street 123",
+      address: new Address({
+        street: "Street",
+        number: "123",
+        complement: "Complement",
+        city: "City",
+        state: "State",
+        zipCode: "12345678",
+      }),
       items: [
         {
           id: "1",

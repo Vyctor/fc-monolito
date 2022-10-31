@@ -2,6 +2,7 @@ import { Id } from "../../@shared/domain/value-object/id.value-object";
 import { Product } from "../../store-catalog/domain/product.entity";
 import { BaseEntity } from "../../@shared/domain/entity/base.entity";
 import AggregateRoot from "../../@shared/domain/entity/aggregate-root.interface";
+import { Address } from "../../@shared/domain/value-object/address.value-object";
 
 type InvoiceProduct = {
   id?: Id;
@@ -13,7 +14,7 @@ type TransactionProps = {
   id?: Id;
   name: string;
   document: string;
-  address: string;
+  address: Address;
   items: InvoiceProduct[];
   createdAt?: Date;
   updatedAt?: Date;
@@ -22,7 +23,7 @@ type TransactionProps = {
 export class Invoice extends BaseEntity implements AggregateRoot {
   private _name: string;
   private _document: string;
-  private _address: string;
+  private _address: Address;
   private _items: InvoiceProduct[];
 
   constructor(props: TransactionProps) {

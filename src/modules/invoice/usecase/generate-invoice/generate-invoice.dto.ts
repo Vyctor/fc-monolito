@@ -1,7 +1,8 @@
+import { Address } from "../../../@shared/domain/value-object/address.value-object";
 export interface GenerateInvoiceUseCaseInputDto {
   name: string;
   document: string;
-  address: string;
+  address: Address;
   items: {
     id: string;
     name: string;
@@ -13,7 +14,7 @@ export interface GenerateInvoiceUseCaseOutputDto {
   id: string;
   name: string;
   document: string;
-  address: string;
+  address: Address;
   items: {
     id: string;
     name: string;
