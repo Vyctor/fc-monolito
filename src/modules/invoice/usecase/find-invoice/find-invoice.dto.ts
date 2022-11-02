@@ -1,4 +1,4 @@
-import { Address } from "../../../@shared/domain/value-object/address.value-object";
+import { Address } from "../../domain/value-object/address.value-object";
 export interface FindInvoiceInputDto {
   id: string;
 }

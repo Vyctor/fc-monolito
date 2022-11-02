@@ -1,21 +1,15 @@
-import { Id } from "../../@shared/domain/value-object/id.value-object";
-import { Product } from "../../store-catalog/domain/product.entity";
-import { BaseEntity } from "../../@shared/domain/entity/base.entity";
-import AggregateRoot from "../../@shared/domain/entity/aggregate-root.interface";
-import { Address } from "../../@shared/domain/value-object/address.value-object";
-
-type InvoiceProduct = {
-  id?: Id;
-  name: string;
-  salePrice: number;
-};
+import { Id } from "../../../@shared/domain/value-object/id.value-object";
+import { BaseEntity } from "../../../@shared/domain/entity/base.entity";
+import AggregateRoot from "../../../@shared/domain/entity/aggregate-root.interface";
+import { Address } from "../value-object/address.value-object";
+import { Product } from "./product";
 
 type TransactionProps = {
   id?: Id;
   name: string;
   document: string;
   address: Address;
-  items: InvoiceProduct[];
+  items: Product[];
   createdAt?: Date;
   updatedAt?: Date;
 };
@@ -24,7 +18,7 @@ export class Invoice extends BaseEntity implements AggregateRoot {
   private _name: string;
   private _document: string;
   private _address: Address;
-  private _items: InvoiceProduct[];
+  private _items: Product[];
 
   constructor(props: TransactionProps) {
     super(props.id, props.createdAt, props.updatedAt);

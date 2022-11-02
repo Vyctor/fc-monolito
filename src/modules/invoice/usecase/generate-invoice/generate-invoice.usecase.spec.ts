@@ -1,5 +1,7 @@
-import { Address } from "../../../@shared/domain/value-object/address.value-object";
+import { Address } from "../../domain/value-object/address.value-object";
 import { GenerateInvoiceUsecase } from "./generate-invoice.usecase";
+import { Product } from "../../domain/entity/product";
+import { Id } from "../../../@shared/domain/value-object/id.value-object";
 
 const mockRepository = () => {
   return {
@@ -26,16 +28,16 @@ describe("Generate Invoice Usecase", () => {
         zipCode: "12345678",
       }),
       items: [
-        {
-          id: "1",
+        new Product({
+          id: new Id("1"),
           name: "Product 1",
           salePrice: 10,
-        },
-        {
-          id: "2",
+        }),
+        new Product({
+          id: new Id("2"),
           name: "Product 2",
           salePrice: 20,
-        },
+        }),
       ],
     };
 

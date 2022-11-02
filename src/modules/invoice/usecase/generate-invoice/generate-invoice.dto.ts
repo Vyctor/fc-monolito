@@ -1,13 +1,10 @@
-import { Address } from "../../../@shared/domain/value-object/address.value-object";
+import { Address } from "../../domain/value-object/address.value-object";
+import { Product } from "../../domain/entity/product";
 export interface GenerateInvoiceUseCaseInputDto {
   name: string;
   document: string;
   address: Address;
-  items: {
-    id: string;
-    name: string;
-    salePrice: number;
-  }[];
+  items: Product[];
 }
 
 export interface GenerateInvoiceUseCaseOutputDto {
@@ -15,10 +12,6 @@ export interface GenerateInvoiceUseCaseOutputDto {
   name: string;
   document: string;
   address: Address;
-  items: {
-    id: string;
-    name: string;
-    salePrice: number;
-  }[];
+  items: Product[];
   total: number;
 }
