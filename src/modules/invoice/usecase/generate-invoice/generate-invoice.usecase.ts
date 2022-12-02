@@ -1,48 +1,71 @@
-import { UsecaseInterface } from "../../../@shared/usecase/usecase.interface";
-import { Invoice } from "../../domain/entity/invoice";
 import { Id } from "../../../@shared/domain/value-object/id.value-object";
+
+import { InvoiceGateway } from "../../gateway/invoice.gateway";
+import { UsecaseInterface } from "../../../@shared/usecase/usecase.interface";
 import {
   GenerateInvoiceUseCaseInputDto,
   GenerateInvoiceUseCaseOutputDto,
 } from "./generate-invoice.dto";
-import { InvoiceGateway } from "../../gateway/invoice.gateway";
+import { Invoice } from "../../domain/entity/invoice";
 import { Product } from "../../domain/entity/product";
+import { Address } from "../../domain/value-object/address.value-object";
 
-export class GenerateInvoiceUsecase implements UsecaseInterface {
-  constructor(private readonly _invoiceRepository: InvoiceGateway) {}
+export class GenerateInvoiceUseCase implements UsecaseInterface {
+  constructor(private invoiceRepository: InvoiceGateway) {}
 
   async execute(
     input: GenerateInvoiceUseCaseInputDto
   ): Promise<GenerateInvoiceUseCaseOutputDto> {
+    const {
+      name,
+      document,
+      street,
+      number,
+      complement,
+      city,
+      state,
+      zipCode,
+      items,
+    } = input;
+
     const invoice = new Invoice({
-      name: input.name,
-      document: input.document,
-      address: input.address,
-      items: input.items.map((item) => {
-        return new Product({
-          id: item.id,
-          name: item.name,
-          salePrice: item.salePrice,
-        });
+      name,
+      document,
+      address: new Address({
+        street,
+        number,
+        complement,
+        city,
+        state,
+        zipCode,
       }),
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      items: items.map(
+        (item) =>
+          new Product({
+            id: new Id(item.id),
+            name: item.name,
+            salePrice: item.salePrice,
+          })
+      ),
     });
 
-    await this._invoiceRepository.create(invoice);
+    await this.invoiceRepository.create(invoice);
 
     return {
       id: invoice.id.id,
       name: invoice.name,
       document: invoice.document,
-      address: invoice.address,
-      items: invoice.items.map((item) => {
-        return new Product({
-          id: item.id,
-          name: item.name,
-          salePrice: item.salePrice,
-        });
-      }),
+      street: invoice.address.street,
+      number: invoice.address.number,
+      complement: invoice.address.complement,
+      city: invoice.address.city,
+      state: invoice.address.state,
+      zipCode: invoice.address.zipCode,
+      items: invoice.items.map((product) => ({
+        id: product.id.id,
+        name: product.name,
+        salePrice: product.salePrice,
+      })),
       total: invoice.total,
     };
   }

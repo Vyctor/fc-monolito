@@ -3,12 +3,12 @@ import { InvoiceGateway } from "../../gateway/invoice.gateway";
 import { FindInvoiceInputDto, FindInvoiceOutputDto } from "./find-invoice.dto";
 
 export class FindInvoiceUsecase implements UsecaseInterface {
-  constructor(private readonly _invoiceRepository: InvoiceGateway) {}
+  constructor(private readonly invoiceRepository: InvoiceGateway) {}
 
   async execute(input: FindInvoiceInputDto): Promise<FindInvoiceOutputDto> {
     const { id } = input;
 
-    const invoice = await this._invoiceRepository.find(id);
+    const invoice = await this.invoiceRepository.find(id);
 
     return {
       id: invoice.id.id,

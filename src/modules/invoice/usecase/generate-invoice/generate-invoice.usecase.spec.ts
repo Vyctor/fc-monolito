@@ -1,54 +1,53 @@
-import { Address } from "../../domain/value-object/address.value-object";
-import { GenerateInvoiceUsecase } from "./generate-invoice.usecase";
-import { Product } from "../../domain/entity/product";
-import { Id } from "../../../@shared/domain/value-object/id.value-object";
+import { GenerateInvoiceUseCase } from "./generate-invoice.usecase";
 
-const mockRepository = () => {
+const MockRepository = () => {
   return {
     find: jest.fn(),
     create: jest.fn(),
   };
 };
 
-describe("Generate Invoice Usecase", () => {
-  it("should generate a invoice", async () => {
-    const invoiceRepository = mockRepository();
-
-    const usecase = new GenerateInvoiceUsecase(invoiceRepository);
+describe("GenerateInvoiceUseCase unit test", () => {
+  it("should generate an invoice", async () => {
+    const repository = MockRepository();
+    const generateInvoiceUseCase = new GenerateInvoiceUseCase(repository);
 
     const input = {
-      name: "John Doe",
-      document: "123456789",
-      address: new Address({
-        street: "Street",
-        number: "123",
-        complement: "Complement",
-        city: "City",
-        state: "State",
-        zipCode: "12345678",
-      }),
+      name: "Invoice 1",
+      document: "Document 1",
+      street: "Main Street",
+      number: "123",
+      complement: "Next to the bank",
+      city: "New York",
+      state: "New York",
+      zipCode: "122343404",
       items: [
-        new Product({
-          id: new Id("1"),
+        {
+          id: "1",
           name: "Product 1",
-          salePrice: 10,
-        }),
-        new Product({
-          id: new Id("2"),
+          salePrice: 100,
+        },
+        {
+          id: "2",
           name: "Product 2",
-          salePrice: 20,
-        }),
+          salePrice: 200,
+        },
       ],
     };
 
-    const result = await usecase.execute(input);
+    const result = await generateInvoiceUseCase.execute(input);
 
-    expect(invoiceRepository.create).toHaveBeenCalled();
     expect(result.id).toBeDefined();
-    expect(result.name).toBe(input.name);
-    expect(result.document).toBe(input.document);
-    expect(result.address).toBe(input.address);
+    expect(result.name).toEqual(input.name);
+    expect(result.document).toEqual(input.document);
     expect(result.items).toEqual(input.items);
-    expect(result.total).toBe(30);
+    expect(result.total).toEqual(300);
+
+    expect(result.street).toEqual(input.street);
+    expect(result.number).toEqual(input.number);
+    expect(result.complement).toEqual(input.complement);
+    expect(result.city).toEqual(input.city);
+    expect(result.state).toEqual(input.state);
+    expect(result.zipCode).toEqual(input.zipCode);
   });
 });
