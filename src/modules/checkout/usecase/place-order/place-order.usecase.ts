@@ -3,6 +3,8 @@ import { UsecaseInterface } from "../../../@shared/usecase/usecase.interface";
 import { ClientAdmFacadeInterface } from "../../../client-adm/facade/client-adm.facade.interface";
 import { ProductAdmFacadeInterface } from "../../../product-adm/facade/product-adm.facade.interface";
 import { StoreCatalogFacadeInterface } from "../../../store-catalog/facade/store-catalog.facade.interface";
+import { Id } from "../../../@shared/domain/value-object/id.value-object";
+import { Product } from "../../domain/product.entity";
 
 export class PlaceOrderUsecase implements UsecaseInterface {
   private _clientFacade: ClientAdmFacadeInterface;
@@ -53,5 +55,22 @@ export class PlaceOrderUsecase implements UsecaseInterface {
         );
       }
     }
+  }
+
+  private async getProduct(productId: string): Promise<Product> {
+    const product = await this._catalogFacade.find({ id: productId });
+
+    if (!product) {
+      throw new Error(`Product not found`);
+    }
+
+    const productProps = {
+      id: new Id(product.id),
+      name: product.name,
+      description: product.description,
+      salesPrice: product.salePrice,
+    };
+
+    return new Product(productProps);
   }
 }

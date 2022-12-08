@@ -82,9 +82,9 @@ describe("Place Order Usecase unit test", () => {
       };
 
       // @ts-expect-error - force set productFacade
-      placeOrderUsecase["_productFacade"] = mockCatalogFacade;
+      placeOrderUsecase["_catalogFacade"] = mockCatalogFacade;
 
-      await expect(placeOrderUsecase["getProduct"](["0"])).rejects.toThrow(
+      await expect(placeOrderUsecase["getProduct"]("0")).rejects.toThrow(
         new Error("Product not found")
       );
     });
