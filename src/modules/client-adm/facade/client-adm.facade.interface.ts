@@ -16,6 +16,7 @@ export interface FindClientFacadeOutputDto {
   name: string;
   email: string;
   address: string;
+  document: string;
   createdAt: Date;
   updatedAt: Date;
 }
