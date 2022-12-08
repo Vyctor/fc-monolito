@@ -5,6 +5,8 @@ import { ProductAdmFacadeInterface } from "../../../product-adm/facade/product-a
 import { StoreCatalogFacadeInterface } from "../../../store-catalog/facade/store-catalog.facade.interface";
 import { Id } from "../../../@shared/domain/value-object/id.value-object";
 import { Product } from "../../domain/product.entity";
+import { Client } from "../../domain/client.entity";
+import Order from "../../domain/order.entity";
 
 export class PlaceOrderUsecase implements UsecaseInterface {
   private _clientFacade: ClientAdmFacadeInterface;
@@ -29,6 +31,22 @@ export class PlaceOrderUsecase implements UsecaseInterface {
     }
 
     await this.validateProducts(input);
+
+    const products = await Promise.all(
+      input.products.map((p) => this.getProduct(p.productId))
+    );
+
+    const myClient = new Client({
+      id: new Id(client.id),
+      name: client.name,
+      email: client.email,
+      address: client.address,
+    });
+
+    const order = new Order({
+      client: myClient,
+      products,
+    });
 
     return {
       id: "",
