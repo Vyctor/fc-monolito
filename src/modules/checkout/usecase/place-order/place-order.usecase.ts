@@ -2,18 +2,21 @@ import { PlaceOrderOutputDto, PlaceOrderInputDto } from "./place-order.dto";
 import { UsecaseInterface } from "../../../@shared/usecase/usecase.interface";
 import { ClientAdmFacadeInterface } from "../../../client-adm/facade/client-adm.facade.interface";
 import { ProductAdmFacadeInterface } from "../../../product-adm/facade/product-adm.facade.interface";
-import { Product } from "../../domain/product.entity";
+import { StoreCatalogFacadeInterface } from "../../../store-catalog/facade/store-catalog.facade.interface";
 
 export class PlaceOrderUsecase implements UsecaseInterface {
   private _clientFacade: ClientAdmFacadeInterface;
   private _productFacade: ProductAdmFacadeInterface;
+  private _catalogFacade: StoreCatalogFacadeInterface;
 
   constructor(
     clientFacade: ClientAdmFacadeInterface,
-    productFacade: ProductAdmFacadeInterface
+    productFacade: ProductAdmFacadeInterface,
+    catalogFacade: StoreCatalogFacadeInterface
   ) {
     this._clientFacade = clientFacade;
     this._productFacade = productFacade;
+    this._catalogFacade = catalogFacade;
   }
 
   async execute(input: PlaceOrderInputDto): Promise<PlaceOrderOutputDto> {
