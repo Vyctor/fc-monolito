@@ -20,12 +20,12 @@ const invoice = new Invoice({
     new Product({
       id: new Id("1"),
       name: "Product 1",
-      salePrice: 10,
+      salesPrice: 10,
     }),
     new Product({
       id: new Id("2"),
       name: "Product 2",
-      salePrice: 20,
+      salesPrice: 20,
     }),
   ],
   createdAt: new Date(),
@@ -56,7 +56,7 @@ describe("Find invoice usecase unit test", () => {
         return {
           id: item.id.id,
           name: item.name,
-          salePrice: item.salePrice,
+          salesPrice: item.salesPrice,
         };
       })
     );

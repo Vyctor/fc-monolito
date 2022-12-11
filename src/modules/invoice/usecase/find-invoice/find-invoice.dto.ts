@@ -17,7 +17,7 @@ export interface FindInvoiceOutputDto {
   items: {
     id: string;
     name: string;
-    salePrice: number;
+    salesPrice: number;
   }[];
   total: number;
   createdAt: Date;

@@ -14,7 +14,7 @@ export class ProductRepository implements ProductGateway {
         id: new Id(product.id),
         name: product.name,
         description: product.description,
-        salePrice: product.salePrice,
+        salesPrice: product.salesPrice,
       });
     });
   }
@@ -26,7 +26,7 @@ export class ProductRepository implements ProductGateway {
       id: new Id(product.id),
       name: product.name,
       description: product.description,
-      salePrice: product.salePrice,
+      salesPrice: product.salesPrice,
     });
   }
 }

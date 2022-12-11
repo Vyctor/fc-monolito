@@ -44,7 +44,7 @@ export class GenerateInvoiceUseCase implements UsecaseInterface {
           new Product({
             id: new Id(item.id),
             name: item.name,
-            salePrice: item.salePrice,
+            salesPrice: item.salesPrice,
           })
       ),
     });
@@ -64,7 +64,7 @@ export class GenerateInvoiceUseCase implements UsecaseInterface {
       items: invoice.items.map((product) => ({
         id: product.id.id,
         name: product.name,
-        salePrice: product.salePrice,
+        salesPrice: product.salesPrice,
       })),
       total: invoice.total,
     };

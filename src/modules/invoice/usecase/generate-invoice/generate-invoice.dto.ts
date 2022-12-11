@@ -10,7 +10,7 @@ export interface GenerateInvoiceUseCaseInputDto {
   items: {
     id: string;
     name: string;
-    salePrice: number;
+    salesPrice: number;
   }[];
 }
 
@@ -27,7 +27,7 @@ export interface GenerateInvoiceUseCaseOutputDto {
   items: {
     id: string;
     name: string;
-    salePrice: number;
+    salesPrice: number;
   }[];
   total: number;
 }

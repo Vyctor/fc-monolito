@@ -13,7 +13,7 @@ import { Address } from "../domain/value-object/address.value-object";
 interface ProductData {
   id: string;
   name: string;
-  salePrice: number;
+  salesPrice: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -80,7 +80,7 @@ export class InvoiceModel extends Model {
           new Product({
             id: new Id(item.id),
             name: item.name,
-            salePrice: item.salePrice,
+            salesPrice: item.salesPrice,
           })
       ),
     });

@@ -1,9 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
 import { ClientModel } from "../repository/client.model";
-import ClientRepository from "../repository/client.repository";
-import { AddClientUsecase } from "../usecase/add-client/add-client.usecase";
-import { ClientAdmFacade } from "./client-adm.facade";
-import { FindClientUsecase } from "../usecase/find-client/find-client.usecase";
 import { ClientAdmFacadeFactory } from "../factory/client-adm.facade.factory";
 
 describe("ClientAdmFacade test", () => {
@@ -33,11 +29,14 @@ describe("ClientAdmFacade test", () => {
       name: "John Doe",
       email: "x@x.com",
       address: "123 Main St",
+      document: "123456789",
     };
 
     await facade.add(input);
 
     const client = await ClientModel.findOne({ where: { id: "1" } });
+
+    console.log("client: ", client?.toJSON());
 
     expect(client).toBeDefined();
     expect(client.name).toBe(input.name);
@@ -53,6 +52,7 @@ describe("ClientAdmFacade test", () => {
       name: "John Doe",
       email: "x@x.com",
       address: "123 Main St",
+      document: "123456789",
     };
 
     await facade.add(input);

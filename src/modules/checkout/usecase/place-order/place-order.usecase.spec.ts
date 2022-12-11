@@ -97,7 +97,7 @@ describe("Place Order Usecase unit test", () => {
           id: "0",
           name: "Product 0",
           description: "Product 0 description",
-          salePrice: 0,
+          salesPrice: 0,
         }),
       };
 

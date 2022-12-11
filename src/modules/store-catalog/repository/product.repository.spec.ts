@@ -25,14 +25,14 @@ describe("ProductRepository test", () => {
       id: "1",
       name: "Product 1",
       description: "Product 1 description",
-      salePrice: 10,
+      salesPrice: 10,
     });
 
     await ProductModel.create({
       id: "2",
       name: "Product 2",
       description: "Product 2 description",
-      salePrice: 20,
+      salesPrice: 20,
     });
 
     const productRepository = new ProductRepository();
@@ -43,11 +43,11 @@ describe("ProductRepository test", () => {
     expect(products[0].id.id).toBe("1");
     expect(products[0].name).toBe("Product 1");
     expect(products[0].description).toBe("Product 1 description");
-    expect(products[0].salePrice).toBe(10);
+    expect(products[0].salesPrice).toBe(10);
     expect(products[1].id.id).toBe("2");
     expect(products[1].name).toBe("Product 2");
     expect(products[1].description).toBe("Product 2 description");
-    expect(products[1].salePrice).toBe(20);
+    expect(products[1].salesPrice).toBe(20);
   });
 
   it("should find a product", async () => {
@@ -55,14 +55,14 @@ describe("ProductRepository test", () => {
       id: "1",
       name: "Product 1",
       description: "Product 1 description",
-      salePrice: 10,
+      salesPrice: 10,
     });
 
     await ProductModel.create({
       id: "2",
       name: "Product 2",
       description: "Product 2 description",
-      salePrice: 20,
+      salesPrice: 20,
     });
 
     const productRepository = new ProductRepository();
@@ -72,6 +72,6 @@ describe("ProductRepository test", () => {
     expect(product.id.id).toBe("1");
     expect(product.name).toBe("Product 1");
     expect(product.description).toBe("Product 1 description");
-    expect(product.salePrice).toBe(10);
+    expect(product.salesPrice).toBe(10);
   });
 });

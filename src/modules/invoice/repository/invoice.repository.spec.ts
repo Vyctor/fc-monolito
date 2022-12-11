@@ -40,13 +40,13 @@ describe("InvoiceRepository test", () => {
     const product1 = new Product({
       id: new Id("1"),
       name: "Product 1",
-      salePrice: 100,
+      salesPrice: 100,
     });
 
     const product2 = new Product({
       id: new Id("2"),
       name: "Product 2",
-      salePrice: 200,
+      salesPrice: 200,
     });
 
     const invoice = new Invoice({
@@ -66,7 +66,7 @@ describe("InvoiceRepository test", () => {
     expect(result.document).toEqual(invoice.document);
     expect(result.items[0].name).toEqual(invoice.items[0].name);
     expect(result.items[1].name).toEqual(invoice.items[1].name);
-    expect(result.items[1].salePrice).toEqual(invoice.items[1].salePrice);
+    expect(result.items[1].salesPrice).toEqual(invoice.items[1].salesPrice);
     expect(result.items[1].id.id).toEqual(invoice.items[1].id);
     expect(result.address).toEqual(invoice.address);
     expect(invoice.total).toEqual(300);
@@ -84,12 +84,12 @@ describe("InvoiceRepository test", () => {
         {
           id: new Id("1"),
           name: "Product 1",
-          salePrice: 100,
+          salesPrice: 100,
         },
         {
           id: new Id("2"),
           name: "Product 2",
-          salePrice: 200,
+          salesPrice: 200,
         },
       ],
       addressStreet: "street",
@@ -109,8 +109,8 @@ describe("InvoiceRepository test", () => {
     expect(result.document).toEqual(invoiceCreated.document);
     expect(result.items[0].name).toEqual(invoiceCreated.items[0].name);
     expect(result.items[1].name).toEqual(invoiceCreated.items[1].name);
-    expect(result.items[1].salePrice).toEqual(
-      invoiceCreated.items[1].salePrice
+    expect(result.items[1].salesPrice).toEqual(
+      invoiceCreated.items[1].salesPrice
     );
     expect(result.items[1].id.id).toEqual(invoiceCreated.items[1].id);
     expect(result.total).toEqual(300);

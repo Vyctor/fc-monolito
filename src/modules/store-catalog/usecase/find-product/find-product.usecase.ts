@@ -12,7 +12,7 @@ export class FindProductUsecase implements UsecaseInterface {
       id: product.id.id,
       name: product.name,
       description: product.description,
-      salePrice: product.salePrice,
+      salesPrice: product.salesPrice,
     };
   }
 }

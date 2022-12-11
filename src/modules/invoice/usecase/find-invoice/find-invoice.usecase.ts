@@ -19,7 +19,7 @@ export class FindInvoiceUsecase implements UsecaseInterface {
         return {
           id: item.id.id,
           name: item.name,
-          salePrice: item.salePrice,
+          salesPrice: item.salesPrice,
         };
       }),
       total: invoice.total,
