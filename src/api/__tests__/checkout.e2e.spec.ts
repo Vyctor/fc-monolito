@@ -8,7 +8,7 @@ describe("E2E test for checkout", () => {
     await sequelize.sync({ force: true });
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await sequelize.close();
   });
 
@@ -52,6 +52,8 @@ describe("E2E test for checkout", () => {
           clientId: "1",
           products: [{ productId: "1" }, { productId: "2" }],
         });
+
+      console.log("response: ", response.body);
 
       expect(response.status).toEqual(200);
       expect(response.body.id).toBeDefined();

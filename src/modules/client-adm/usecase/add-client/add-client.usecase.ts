@@ -15,6 +15,7 @@ export class AddClientUsecase {
       name: input.name,
       email: input.email,
       address: input.address,
+      document: input.document,
     };
 
     const client = new Client(props);
@@ -25,6 +26,7 @@ export class AddClientUsecase {
       id: client.id.id,
       name: client.name,
       email: client.email,
+      document: client.document,
       address: client.address,
       createdAt: client.createdAt,
       updatedAt: client.updatedAt,
