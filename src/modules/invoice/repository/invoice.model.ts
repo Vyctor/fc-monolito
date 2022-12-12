@@ -30,7 +30,7 @@ export class InvoiceModel extends Model {
   @Column({ allowNull: false })
   name: string;
 
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   document: string;
 
   @Column({ allowNull: false })

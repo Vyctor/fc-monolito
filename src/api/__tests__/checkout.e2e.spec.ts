@@ -53,8 +53,6 @@ describe("E2E test for checkout", () => {
           products: [{ productId: "1" }, { productId: "2" }],
         });
 
-      console.log("response: ", response.body);
-
       expect(response.status).toEqual(200);
       expect(response.body.id).toBeDefined();
       expect(response.body.invoiceId).toBeDefined();

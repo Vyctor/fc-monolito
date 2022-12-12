@@ -36,8 +36,6 @@ describe("ClientAdmFacade test", () => {
 
     const client = await ClientModel.findOne({ where: { id: "1" } });
 
-    console.log("client: ", client?.toJSON());
-
     expect(client).toBeDefined();
     expect(client.name).toBe(input.name);
     expect(client.email).toBe(input.email);
